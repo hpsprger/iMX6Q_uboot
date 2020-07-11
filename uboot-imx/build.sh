@@ -1,4 +1,4 @@
 #!/bin/bash
 #make mx6qsabresd_config
 make mx6qsabresdandroid_config
-make -j8
+make V=1 -w -j8 
