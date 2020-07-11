@@ -395,7 +395,7 @@ export RCS_TAR_IGNORE := --exclude SCCS --exclude BitKeeper --exclude .svn \
 # Basic helpers built in scripts/
 PHONY += scripts_basic
 scripts_basic:
-	echo rock_debug======P2========>$(MAKE) $(build)=scripts/basic
+	echo rock_debug======rule:scripts_basic========>$(MAKE) $(build)=scripts/basic
 	$(Q)$(MAKE) $(build)=scripts/basic
 	$(Q)rm -f .tmp_quiet_recordmcount
 
@@ -407,9 +407,8 @@ PHONY += outputmakefile
 # separate output directory. This allows convenient use of make in the
 # output directory.
 outputmakefile:
-	echo rock_debug======P3========>$@  $(KBUILD_SRC)
+	echo rock_debug======outputmakefile:rule11========>target:$@  'KBUILD_SRC'=$(KBUILD_SRC)
 ifneq ($(KBUILD_SRC),)
-	echo rock_debug======P4========>$@
 	$(Q)ln -fsn $(srctree) source
 	$(Q)$(CONFIG_SHELL) $(srctree)/scripts/mkmakefile \
 	    $(srctree) $(objtree) $(VERSION) $(PATCHLEVEL)
@@ -478,7 +477,7 @@ config: scripts_basic outputmakefile FORCE
 	$(Q)$(MAKE) $(build)=scripts/kconfig $@
 
 %config: scripts_basic outputmakefile FORCE
-	echo rock_debug======P1========>$(MAKE) $(build)=scripts/kconfig $@
+	echo rock_debug=======rule:%config========>$(MAKE) $(build)=scripts/kconfig $@
 	$(Q)$(MAKE) $(build)=scripts/kconfig $@
 
 else

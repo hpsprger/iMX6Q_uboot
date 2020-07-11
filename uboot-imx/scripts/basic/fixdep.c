@@ -447,7 +447,6 @@ static void traps(void)
 int main(int argc, char *argv[])
 {
 	traps();
-
 	if (argc != 4)
 		usage();
 

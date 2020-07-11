@@ -108,10 +108,13 @@ else
 endif
 
 %_defconfig: $(obj)/conf
+	echo ===============>execute confg ===> rule_target:$@  rule_dep:$<
+	echo ===============>exe_cmd: $(Q) $< --defconfig=arch/$(SRCARCH)/configs/$@ $(Kconfig)
 	$(Q)$< --defconfig=arch/$(SRCARCH)/configs/$@ $(Kconfig)
 
 # Added for U-Boot (backward compatibility)
 %_config: %_defconfig
+	echo ===============>rocke_debug222: rule_target:$@  rule_dep:$<
 	@:
 
 configfiles=$(wildcard $(srctree)/kernel/configs/$(1).config $(srctree)/arch/$(SRCARCH)/configs/$(1).config)

@@ -58,6 +58,7 @@ host-cxxmulti	:= $(addprefix $(obj)/,$(host-cxxmulti))
 host-cxxobjs	:= $(addprefix $(obj)/,$(host-cxxobjs))
 host-objdirs    := $(addprefix $(obj)/,$(host-objdirs))
 
+
 obj-dirs += $(host-objdirs)
 
 #####
@@ -88,8 +89,8 @@ quiet_cmd_host-csingle 	= HOSTCC  $@
       cmd_host-csingle	= $(HOSTCC) $(hostc_flags) -o $@ $< \
 	  	$(HOST_LOADLIBES) $(HOSTLOADLIBES_$(@F))
 $(host-csingle): $(obj)/%: $(src)/%.c FORCE
-	@echo host-csingle.....
-	@echo $(cmd_host-csingle)
+	@echo "host-csingle==============>host-csinge="$(host-csingle)
+	@echo "host-csingle==============>"$(cmd_host-csingle)
 	$(call if_changed_dep,host-csingle)
 
 # Link an executable based on list of .o files, all plain c
@@ -99,8 +100,8 @@ quiet_cmd_host-cmulti	= HOSTLD  $@
 			  $(addprefix $(obj)/,$($(@F)-objs)) \
 			  $(HOST_LOADLIBES) $(HOSTLOADLIBES_$(@F))
 $(host-cmulti): FORCE
-	@echo host-cmulti.....
-	@echo $(cmd_host-cmulti)
+	@echo "host-cmulti==============>host-cmulti="$(host-cmulti)
+	@echo "host-cmulti==============>"$(cmd_host-cmulti)
 	$(call if_changed,host-cmulti)
 $(call multi_depend, $(host-cmulti), , -objs)
 
@@ -109,8 +110,8 @@ $(call multi_depend, $(host-cmulti), , -objs)
 quiet_cmd_host-cobjs	= HOSTCC  $@
       cmd_host-cobjs	= $(HOSTCC) $(hostc_flags) -c -o $@ $<
 $(host-cobjs): $(obj)/%.o: $(src)/%.c FORCE
-	echo host-cobjs.....
-	@echo $(cmd_host-cobjs)
+	@echo "host-cobjs==============>host-cobjs="$(host-cobjs)
+	@echo "host-cobjs==============>"$(cmd_host-cobjs)
 	$(call if_changed_dep,host-cobjs)
 
 # Link an executable based on list of .o files, a mixture of .c and .cc
@@ -121,6 +122,8 @@ quiet_cmd_host-cxxmulti	= HOSTLD  $@
 			  $(addprefix $(obj)/,$($(@F)-$(o)))) \
 			  $(HOST_LOADLIBES) $(HOSTLOADLIBES_$(@F))
 $(host-cxxmulti): FORCE
+	@echo "host-cxxmulti==============>host-cxxmulti="$(host-cxxmulti)
+	@echo "host-cxxmulti==============>"$(cmd_host-cxxmulti)
 	$(call if_changed,host-cxxmulti)
 $(call multi_depend, $(host-cxxmulti), , -objs -cxxobjs)
 
@@ -128,6 +131,8 @@ $(call multi_depend, $(host-cxxmulti), , -objs -cxxobjs)
 quiet_cmd_host-cxxobjs	= HOSTCXX $@
       cmd_host-cxxobjs	= $(HOSTCXX) $(hostcxx_flags) -c -o $@ $<
 $(host-cxxobjs): $(obj)/%.o: $(src)/%.cc FORCE
+	@echo "host-cxxobjs==============>host-cxxobjs="$(host-cxxobjs)
+	@echo "host-cxxobjs==============>"$(cmd_host-cxxobjs)
 	$(call if_changed_dep,host-cxxobjs)
 
 targets += $(host-csingle)  $(host-cmulti) $(host-cobjs)\
