@@ -89,13 +89,13 @@ quiet_cmd_host-csingle 	= HOSTCC  $@
       cmd_host-csingle	= $(HOSTCC) $(hostc_flags) -o $@ $< \
 	  	$(HOST_LOADLIBES) $(HOSTLOADLIBES_$(@F))
 $(host-csingle): $(obj)/%: $(src)/%.c FORCE
-	@echo "Makefile.host==>host-csingle="$(host-csingle)    
-	@echo "Makefile.host==>host-cmulti="$(host-cmulti)     
-	@echo "Makefile.host==>host-cobjs="$(host-cobjs)      
-	@echo "Makefile.host==>host-cxxmulti="$(host-cxxmulti)   
-	@echo "Makefile.host==>host-cxxobjs="$(host-cxxobjs)    
-	@echo "Makefile.host==>host-objdirs="$(host-objdirs)    
-	@echo "Makefile.host==>rule:host-csingle==============>host-csinge:target-depend==>"$@-$<
+	@echo "Makefile.host==>rule:host-csingle="$(host-csingle)    
+	@echo "Makefile.host==>rule:host-cmulti="$(host-cmulti)     
+	@echo "Makefile.host==>rule:host-cobjs="$(host-cobjs)      
+	@echo "Makefile.host==>rule:host-cxxmulti="$(host-cxxmulti)   
+	@echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
+	@echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
+	@echo "Makefile.host==>rule:host-csingle==============>host-csinge:target-depend==>"$@-$^
 	@echo "Makefile.host==>rule:host-csingle==============>cmd_host-csingle="$(cmd_host-csingle)
 	$(call if_changed_dep,host-csingle)
 
@@ -106,12 +106,12 @@ quiet_cmd_host-cmulti	= HOSTLD  $@
 			  $(addprefix $(obj)/,$($(@F)-objs)) \
 			  $(HOST_LOADLIBES) $(HOSTLOADLIBES_$(@F))
 $(host-cmulti): FORCE
-	@echo "Makefile.host==>host-csingle="$(host-csingle)    
-	@echo "Makefile.host==>host-cmulti="$(host-cmulti)     
-	@echo "Makefile.host==>host-cobjs="$(host-cobjs)      
-	@echo "Makefile.host==>host-cxxmulti="$(host-cxxmulti)   
-	@echo "Makefile.host==>host-cxxobjs="$(host-cxxobjs)    
-	@echo "Makefile.host==>host-objdirs="$(host-objdirs)    
+	@echo "Makefile.host==>rule:host-csingle="$(host-csingle)    
+	@echo "Makefile.host==>rule:host-cmulti="$(host-cmulti)     
+	@echo "Makefile.host==>rule:host-cobjs="$(host-cobjs)      
+	@echo "Makefile.host==>rule:host-cxxmulti="$(host-cxxmulti)   
+	@echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
+	@echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-cmulti==============>host-cmulti:target==>"$@
 	@echo "Makefile.host==>rule:host-cmulti==============>cmd_host-cmulti="$(cmd_host-cmulti)
 	$(call if_changed,host-cmulti)
@@ -122,13 +122,13 @@ $(call multi_depend, $(host-cmulti), , -objs)
 quiet_cmd_host-cobjs	= HOSTCC  $@
       cmd_host-cobjs	= $(HOSTCC) $(hostc_flags) -c -o $@ $<
 $(host-cobjs): $(obj)/%.o: $(src)/%.c FORCE
-	@echo "Makefile.host==>host-csingle="$(host-csingle)    
-	@echo "Makefile.host==>host-cmulti="$(host-cmulti)     
-	@echo "Makefile.host==>host-cobjs="$(host-cobjs)      
-	@echo "Makefile.host==>host-cxxmulti="$(host-cxxmulti)   
-	@echo "Makefile.host==>host-cxxobjs="$(host-cxxobjs)    
-	@echo "Makefile.host==>host-objdirs="$(host-objdirs)    
-	@echo "Makefile.host==>rule:host-cobjs==============>host-cobjs:target-depend==>"$@-$< FORCE
+	@echo "Makefile.host==>rule:host-csingle="$(host-csingle)    
+	@echo "Makefile.host==>rule:host-cmulti="$(host-cmulti)     
+	@echo "Makefile.host==>rule:host-cobjs="$(host-cobjs)      
+	@echo "Makefile.host==>rule:host-cxxmulti="$(host-cxxmulti)   
+	@echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
+	@echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
+	@echo "Makefile.host==>rule:host-cobjs==============>host-cobjs:target-depend==>"$@-$^ FORCE
 	@echo "Makefile.host==>rule:host-cobjs==============>cmd_host-cobjs="$(cmd_host-cobjs)
 	$(call if_changed_dep,host-cobjs)
 
@@ -140,12 +140,12 @@ quiet_cmd_host-cxxmulti	= HOSTLD  $@
 			  $(addprefix $(obj)/,$($(@F)-$(o)))) \
 			  $(HOST_LOADLIBES) $(HOSTLOADLIBES_$(@F))
 $(host-cxxmulti): FORCE
-	@echo "Makefile.host==>host-csingle="$(host-csingle)    
-	@echo "Makefile.host==>host-cmulti="$(host-cmulti)     
-	@echo "Makefile.host==>host-cobjs="$(host-cobjs)      
-	@echo "Makefile.host==>host-cxxmulti="$(host-cxxmulti)   
-	@echo "Makefile.host==>host-cxxobjs="$(host-cxxobjs)    
-	@echo "Makefile.host==>host-objdirs="$(host-objdirs)    
+	@echo "Makefile.host==>rule:host-csingle="$(host-csingle)    
+	@echo "Makefile.host==>rule:host-cmulti="$(host-cmulti)     
+	@echo "Makefile.host==>rule:host-cobjs="$(host-cobjs)      
+	@echo "Makefile.host==>rule:host-cxxmulti="$(host-cxxmulti)   
+	@echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
+	@echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-cxxmulti==============>host-cxxmulti:target==>"$@
 	@echo "Makefile.host==>rule:host-cxxmulti==============>cmd_host-cxxmulti="$(cmd_host-cxxmulti)
 	$(call if_changed,host-cxxmulti)
@@ -155,13 +155,13 @@ $(call multi_depend, $(host-cxxmulti), , -objs -cxxobjs)
 quiet_cmd_host-cxxobjs	= HOSTCXX $@
       cmd_host-cxxobjs	= $(HOSTCXX) $(hostcxx_flags) -c -o $@ $<
 $(host-cxxobjs): $(obj)/%.o: $(src)/%.cc FORCE
-	@echo "Makefile.host==>host-csingle="$(host-csingle)    
-	@echo "Makefile.host==>host-cmulti="$(host-cmulti)     
-	@echo "Makefile.host==>host-cobjs="$(host-cobjs)      
-	@echo "Makefile.host==>host-cxxmulti="$(host-cxxmulti)   
-	@echo "Makefile.host==>host-cxxobjs="$(host-cxxobjs)    
-	@echo "Makefile.host==>host-objdirs="$(host-objdirs)    
-	@echo "Makefile.host==>rule:host-cxxobjs==============>host-cxxobjs:target-depend==>"$@-$<
+	@echo "Makefile.host==>rule:host-csingle="$(host-csingle)    
+	@echo "Makefile.host==>rule:host-cmulti="$(host-cmulti)     
+	@echo "Makefile.host==>rule:host-cobjs="$(host-cobjs)      
+	@echo "Makefile.host==>rule:host-cxxmulti="$(host-cxxmulti)   
+	@echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
+	@echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
+	@echo "Makefile.host==>rule:host-cxxobjs==============>host-cxxobjs:target-depend==>"$@-$^
 	@echo "Makefile.host==>rule:host-cxxobjs==============>cmd_host-cxxobjs="$(cmd_host-cxxobjs)
 	$(call if_changed_dep,host-cxxobjs)
 

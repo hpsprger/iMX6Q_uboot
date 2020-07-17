@@ -114,13 +114,13 @@ __build: $(if $(KBUILD_BUILTIN),$(builtin-target) $(lib-target) $(extra-y)) \
 	 $(if $(KBUILD_MODULES),$(obj-m) $(modorder-target)) \
 	 $(subdir-ym) $(always)
 	@:
-	@echo "Makefile.build==>__build==> builtin-target="$(builtin-target)
-	@echo "Makefile.build==>__build==> lib-target="$(lib-target)
-	@echo "Makefile.build==>__build==> extra-y="$(extra-y)
-	@echo "Makefile.build==>__build==> subdir-ym="$(subdir-ym)
-	@echo "Makefile.build==>__build==> always="$(always)
-	@echo "Makefile.build==>__build==> all_dep="$<
-	@echo "Makefile.build==>__build==> targets="$(targets)
+	@echo "Makefile.build==>rule:__build==> builtin-target="$(builtin-target)
+	@echo "Makefile.build==>rule:__build==> lib-target="$(lib-target)
+	@echo "Makefile.build==>rule:__build==> extra-y="$(extra-y)
+	@echo "Makefile.build==>rule:__build==> subdir-ym="$(subdir-ym)
+	@echo "Makefile.build==>rule:__build==> always="$(always)
+	@echo "Makefile.build==>rule:__build==> all_dep="$<
+	@echo "Makefile.build==>rule:__build==> targets="$(targets)
 
 # Linus' kernel sanity checking tool
 ifneq ($(KBUILD_CHECKSRC),0)

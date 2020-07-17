@@ -395,7 +395,7 @@ export RCS_TAR_IGNORE := --exclude SCCS --exclude BitKeeper --exclude .svn \
 # Basic helpers built in scripts/
 PHONY += scripts_basic
 scripts_basic:
-	echo top_Makefile==>scripts_basic======>$(MAKE) $(build)=scripts/basic
+	echo top_Makefile==>rule:scripts_basic======>$(MAKE) $(build)=scripts/basic
 	$(Q)$(MAKE) $(build)=scripts/basic
 	$(Q)rm -f .tmp_quiet_recordmcount
 
@@ -795,6 +795,7 @@ quiet_cmd_pad_cat = CAT     $@
 cmd_pad_cat = $(cmd_objcopy) && $(append) || rm -f $@
 
 all:		$(ALL-y)
+	@echo "top_Makefile==>rule:all======>target-depend="$@-$^
 ifneq ($(CONFIG_SYS_GENERIC_BOARD),y)
 	@echo "===================== WARNING ======================"
 	@echo "Please convert this board to generic board."
