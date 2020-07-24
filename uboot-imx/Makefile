@@ -501,9 +501,12 @@ $(KCONFIG_CONFIG) include/config/auto.conf.cmd: ;
 # if auto.conf.cmd is missing then we are probably in a cleaned tree so
 # we execute the config step to be sure to catch updated Kconfig files
 include/config/%.conf: $(KCONFIG_CONFIG) include/config/auto.conf.cmd
+	@echo "top_Makefile=======rule:include/config/%.conf========>target--depend="$@----$^
+	@echo "top_Makefile=======rule:include/config/%.conf========>exe_cmd1="$(Q)$(MAKE) -f $(srctree)/Makefile silentoldconfig
 	$(Q)$(MAKE) -f $(srctree)/Makefile silentoldconfig
 	@# If the following part fails, include/config/auto.conf should be
 	@# deleted so "make silentoldconfig" will be re-run on the next build.
+	@#echo top_Makefile=======rule:include/config/%.conf========>exe_cmd2="$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.autoconf || { rm -f include/config/auto.conf; false; }
 	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.autoconf || \
 		{ rm -f include/config/auto.conf; false; }
 	@# include/config.h has been updated after "make silentoldconfig".
@@ -795,7 +798,7 @@ quiet_cmd_pad_cat = CAT     $@
 cmd_pad_cat = $(cmd_objcopy) && $(append) || rm -f $@
 
 all:		$(ALL-y)
-	@echo "top_Makefile==>rule:all======>target-depend="$@-$^
+	@echo "top_Makefile==>rule:all======>target-depend="$@-----$^
 ifneq ($(CONFIG_SYS_GENERIC_BOARD),y)
 	@echo "===================== WARNING ======================"
 	@echo "Please convert this board to generic board."
@@ -1150,6 +1153,8 @@ $(sort $(u-boot-init) $(u-boot-main)): $(u-boot-dirs) ;
 
 PHONY += $(u-boot-dirs)
 $(u-boot-dirs): prepare scripts
+	@echo "top_Makefile==>rule:u-boot-dirs======>dst_dir--depend="$@-----$^
+	@echo "top_Makefile==>rule:u-boot-dirs======>exe_cmd:"$(Q)$(MAKE) $(build)=$@
 	$(Q)$(MAKE) $(build)=$@
 
 tools: prepare
