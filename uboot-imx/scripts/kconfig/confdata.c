@@ -1000,11 +1000,13 @@ int conf_write_autoconf(void)
 	name = getenv("KCONFIG_AUTOHEADER");
 	if (!name)
 		name = "include/generated/autoconf.h";
+        printf("conf =========>generate file: %s \n", name);
 	if (rename(".tmpconfig.h", name))
 		return 1;
 	name = getenv("KCONFIG_TRISTATE");
 	if (!name)
 		name = "include/config/tristate.conf";
+        printf("conf =========>generate file: %s \n", name);
 	if (rename(".tmpconfig_tristate", name))
 		return 1;
 	name = conf_get_autoconfig_name();
@@ -1012,6 +1014,7 @@ int conf_write_autoconf(void)
 	 * This must be the last step, kbuild has a dependency on auto.conf
 	 * and this marks the successful completion of the previous steps.
 	 */
+        printf("conf =========>generate file: %s \n", name);
 	if (rename(".tmpconfig", name))
 		return 1;
 

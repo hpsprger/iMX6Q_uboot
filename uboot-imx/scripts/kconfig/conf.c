@@ -693,6 +693,7 @@ int main(int ac, char **av)
 			fprintf(stderr, _("\n*** Error during update of the configuration.\n\n"));
 			return 1;
 		}
+                printf("config ..........\n");
 	} else if (input_mode == savedefconfig) {
 		if (conf_write_defconfig(defconfig_file)) {
 			fprintf(stderr, _("n*** Error while saving defconfig to: %s\n\n"),
