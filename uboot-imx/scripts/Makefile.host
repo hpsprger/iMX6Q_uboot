@@ -96,7 +96,7 @@ $(host-csingle): $(obj)/%: $(src)/%.c FORCE
 	@#echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
 	@#echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-csingle==============>host-csinge:target-depend==>"$@-...  #$^
-	@echo "Makefile.host==>rule:host-csingle==============>cmd_host-csingle="$(cmd_host-csingle)
+	@#echo "Makefile.host==>rule:host-csingle==============>cmd_host-csingle="$(cmd_host-csingle)
 	$(call if_changed_dep,host-csingle)
 
 # Link an executable based on list of .o files, all plain c
@@ -113,7 +113,7 @@ $(host-cmulti): FORCE
 	@#echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
 	@#echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-cmulti==============>host-cmulti:target==>"$@
-	@echo "Makefile.host==>rule:host-cmulti==============>cmd_host-cmulti="$(cmd_host-cmulti)
+	@#echo "Makefile.host==>rule:host-cmulti==============>cmd_host-cmulti="$(cmd_host-cmulti)
 	$(call if_changed,host-cmulti)
 $(call multi_depend, $(host-cmulti), , -objs)
 
@@ -129,7 +129,7 @@ $(host-cobjs): $(obj)/%.o: $(src)/%.c FORCE
 	@#echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
 	@#echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-cobjs==============>host-cobjs:target-depend==>"$@-... #$^ FORCE
-	@echo "Makefile.host==>rule:host-cobjs==============>cmd_host-cobjs="$(cmd_host-cobjs)
+	@#echo "Makefile.host==>rule:host-cobjs==============>cmd_host-cobjs="$(cmd_host-cobjs)
 	$(call if_changed_dep,host-cobjs)
 
 # Link an executable based on list of .o files, a mixture of .c and .cc
@@ -147,7 +147,7 @@ $(host-cxxmulti): FORCE
 	@#echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
 	@#echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-cxxmulti==============>host-cxxmulti:target==>"$@
-	@echo "Makefile.host==>rule:host-cxxmulti==============>cmd_host-cxxmulti="$(cmd_host-cxxmulti)
+	@#echo "Makefile.host==>rule:host-cxxmulti==============>cmd_host-cxxmulti="$(cmd_host-cxxmulti)
 	$(call if_changed,host-cxxmulti)
 $(call multi_depend, $(host-cxxmulti), , -objs -cxxobjs)
 
@@ -162,7 +162,7 @@ $(host-cxxobjs): $(obj)/%.o: $(src)/%.cc FORCE
 	@#echo "Makefile.host==>rule:host-cxxobjs="$(host-cxxobjs)    
 	@#echo "Makefile.host==>rule:host-objdirs="$(host-objdirs)    
 	@echo "Makefile.host==>rule:host-cxxobjs==============>host-cxxobjs:target-depend==>"$@-... #$^
-	@echo "Makefile.host==>rule:host-cxxobjs==============>cmd_host-cxxobjs="$(cmd_host-cxxobjs)
+	@#echo "Makefile.host==>rule:host-cxxobjs==============>cmd_host-cxxobjs="$(cmd_host-cxxobjs)
 	$(call if_changed_dep,host-cxxobjs)
 
 targets += $(host-csingle)  $(host-cmulti) $(host-cobjs)\
