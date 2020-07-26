@@ -1135,6 +1135,7 @@ cmd_smap = \
 		-c $(srctree)/common/system_map.c -o common/system_map.o
 
 u-boot:	$(u-boot-init) $(u-boot-main) u-boot.lds
+	@echo "top_Makefile==>rule:u-boot======>generate u-boot cmd:"$(cmd_u-boot__)...CONFIG_KALLSYMS=$(CONFIG_KALLSYMS)...
 	$(call if_changed,u-boot__)
 ifeq ($(CONFIG_KALLSYMS),y)
 	$(call cmd,smap)
@@ -1153,7 +1154,7 @@ $(sort $(u-boot-init) $(u-boot-main)): $(u-boot-dirs) ;
 
 PHONY += $(u-boot-dirs)
 $(u-boot-dirs): prepare scripts
-	@echo "top_Makefile==>rule:u-boot-dirs======>dst_dir--depend="$@-----$^
+	@echo "top_Makefile==>rule:u-boot-dirs======>dst_dir--depend="$@-----$^---
 	@echo "top_Makefile==>rule:u-boot-dirs======>exe_cmd:"$(Q)$(MAKE) $(build)=$@
 	$(Q)$(MAKE) $(build)=$@
 

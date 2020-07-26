@@ -39,10 +39,10 @@ oldconfig: $(obj)/conf
 	$< --$@ $(Kconfig)
 
 silentoldconfig: $(obj)/conf
-	@echo "===rule:silentoldconfig  target--depend===>"$@---$^.......
-	@echo "===rule:silentoldconfig  exe_cmd1====="$(Q)mkdir -p include/config include/generated .......
+	@echo "scripts/kconfig/Makefile===rule:silentoldconfig  target--depend===>"$@---$^.......
+	@echo "scripts/kconfig/Makefile===rule:silentoldconfig  exe_cmd1====="$(Q)mkdir -p include/config include/generated .......
 	$(Q)mkdir -p include/config include/generated
-	@echo "===rule:silentoldconfig  exe_cmd2====="$< --$@ $(Kconfig)
+	@echo "scripts/kconfig/Makefile===rule:silentoldconfig  exe_cmd2====="$< --$@ $(Kconfig)
 	$< --$@ $(Kconfig)
 
 localyesconfig localmodconfig: $(obj)/streamline_config.pl $(obj)/conf

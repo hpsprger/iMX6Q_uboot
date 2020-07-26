@@ -353,6 +353,8 @@ cmd_link_o_target = $(if $(strip $(obj-y)),\
 		      rm -f $@; $(AR) rcs$(KBUILD_ARFLAGS) $@)
 
 $(builtin-target): $(obj-y) FORCE
+	@echo "Makefile.build==>rule:builtin-target==>target--depend:"$@--$^...
+	@echo "Makefile.build==>rule:builtin-target==>link_o_target:"$(cmd_link_o_target)...
 	$(call if_changed,link_o_target)
 
 targets += $(builtin-target)
