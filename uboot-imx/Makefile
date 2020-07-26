@@ -822,6 +822,8 @@ u-boot-dtb.bin: u-boot.bin dts/dt.dtb FORCE
 	$(call if_changed,cat)
 
 %.imx: %.bin
+	@echo "top_Makefile==>rule:%.imx======>target-depend="$@-----$^
+	@echo "top_Makefile==>rule:%.imx======>exe_cmd="$(Q)$(MAKE) $(build)=arch/arm/imx-common $@
 	$(Q)$(MAKE) $(build)=arch/arm/imx-common $@
 
 quiet_cmd_copy = COPY    $@

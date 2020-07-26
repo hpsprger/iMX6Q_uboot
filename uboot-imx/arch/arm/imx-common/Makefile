@@ -52,6 +52,7 @@ MKIMAGEFLAGS_u-boot.imx = -n $(filter-out $< $(PHONY),$^) -T imximage \
 	-e $(CONFIG_SYS_TEXT_BASE)
 
 u-boot.imx: u-boot.bin $(IMX_CONFIG) FORCE
+	echo "arch/arm/imx-common/Makefile======rule:u-boot.imx===cmd_mkimage.................."$(cmd_mkimage)
 	$(call if_changed,mkimage)
 
 ifeq ($(CONFIG_OF_SEPARATE),y)
