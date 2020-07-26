@@ -501,7 +501,7 @@ $(KCONFIG_CONFIG) include/config/auto.conf.cmd: ;
 # if auto.conf.cmd is missing then we are probably in a cleaned tree so
 # we execute the config step to be sure to catch updated Kconfig files
 include/config/%.conf: $(KCONFIG_CONFIG) include/config/auto.conf.cmd
-	@echo "top_Makefile=======rule:include/config/%.conf========>target--depend="$@----$^
+	@echo "top_Makefile=======rule:include/config/%.conf========>target--depend="$@----... #$^
 	@echo "top_Makefile=======rule:include/config/%.conf========>exe_cmd1="$(Q)$(MAKE) -f $(srctree)/Makefile silentoldconfig
 	$(Q)$(MAKE) -f $(srctree)/Makefile silentoldconfig
 	@# If the following part fails, include/config/auto.conf should be
