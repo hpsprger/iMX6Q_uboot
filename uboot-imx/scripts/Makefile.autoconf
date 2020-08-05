@@ -68,6 +68,7 @@ quiet_cmd_autoconf = GEN     $@
 	}
 
 include/autoconf.mk: FORCE
+	echo "Makefile.autoconf==>rule:include/autoconf.mk==>target--depend--cmd:"$@--$^--$(cmd_autoconf)
 	$(call cmd,autoconf)
 
 spl/include/autoconf.mk: FORCE
