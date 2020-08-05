@@ -506,7 +506,7 @@ include/config/%.conf: $(KCONFIG_CONFIG) include/config/auto.conf.cmd
 	$(Q)$(MAKE) -f $(srctree)/Makefile silentoldconfig
 	@# If the following part fails, include/config/auto.conf should be
 	@# deleted so "make silentoldconfig" will be re-run on the next build.
-	@#echo top_Makefile=======rule:include/config/%.conf========>exe_cmd2="$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.autoconf || { rm -f include/config/auto.conf; false; }
+	@echo "top_Makefile=======rule:include/config/%.conf========>exe_cmd2="$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.autoconf || { rm -f include/config/auto.conf; false; }
 	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.autoconf || \
 		{ rm -f include/config/auto.conf; false; }
 	@# include/config.h has been updated after "make silentoldconfig".
