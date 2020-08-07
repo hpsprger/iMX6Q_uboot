@@ -76,7 +76,7 @@
 #endif
 
 #ifndef CONFIG_SYS_PROMPT
-#define CONFIG_SYS_PROMPT	"=> "
+#define CONFIG_SYS_PROMPT	"rocklee===> "
 #endif
 
 #ifndef CONFIG_SYS_PBSIZE
