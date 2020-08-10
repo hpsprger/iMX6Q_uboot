@@ -1544,6 +1544,7 @@ static int run_pipe_real(struct pipe *pi)
 	pi->pgrp = -1;
 #endif
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Check if this is a simple builtin (not part of a pipe).
 	 * Builtins within pipes have to fork anyway, and are handled in
 	 * pseudo_exec.  "echo foo | read bar" doesn't work on bash, either.
@@ -1557,12 +1558,14 @@ static int run_pipe_real(struct pipe *pi)
 		setup_redirects(child, squirrel);
 		/* XXX could we merge code with following builtin case,
 		 * by creating a pseudo builtin that calls run_list_real? */
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		rcode = run_list_real(child->group);
 		restore_redirects(squirrel);
 #else
 		if (pi->num_progs == 1 && child->group) {
 		int rcode;
 		debug_printf("non-subshell grouping\n");
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		rcode = run_list_real(child->group);
 #endif
 		return rcode;
@@ -1652,6 +1655,7 @@ static int run_pipe_real(struct pipe *pi)
 					"'run' command\n", child->argv[i]);
 			return -1;
 		}
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		/* Process the command */
 		return cmd_process(flag, child->argc, child->argv,
 				   &flag_repeat, NULL);
@@ -1751,6 +1755,7 @@ static int run_list_real(struct pipe *pi)
 	int flag_restore = 0;
 	int if_code=0, next_if_code=0;  /* need double-buffer to handle elif */
 	reserved_style rmode, skip_more_in_this_rmode=RES_XXXX;
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* check syntax for "for" */
 	for (rpipe = pi; rpipe; rpipe = rpipe->next) {
 		if ((rpipe->r_mode == RES_IN ||
@@ -1851,6 +1856,7 @@ static int run_list_real(struct pipe *pi)
 #ifndef __U_BOOT__
 		save_num_progs = pi->num_progs; /* save number of programs */
 #endif
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		rcode = run_pipe_real(pi);
 		debug_printf("run_pipe_real returned %d\n",rcode);
 #ifndef __U_BOOT__
@@ -2000,6 +2006,7 @@ static int run_list(struct pipe *pi)
 #ifndef __U_BOOT__
 	if (fake_mode==0) {
 #endif
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		rcode = run_list_real(pi);
 #ifndef __U_BOOT__
 	}
@@ -3170,6 +3177,7 @@ static int parse_stream_outer(struct in_str *inp, int flag)
 	int code = 1;
 #endif
 	do {
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		ctx.type = flag;
 		initialize_context(&ctx);
 		update_ifs_map();
@@ -3190,8 +3198,10 @@ static int parse_stream_outer(struct in_str *inp, int flag)
 			done_word(&temp, &ctx);
 			done_pipe(&ctx,PIPE_SEQ);
 #ifndef __U_BOOT__
+	                printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 			run_list(ctx.list_head);
 #else
+	                printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 			code = run_list(ctx.list_head);
 			if (code == -2) {	/* exit */
 				b_free(&temp);
@@ -3245,16 +3255,19 @@ int parse_string_outer(const char *s, int flag)
 		return 1;
 	if (!*s)
 		return 0;
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (!(p = strchr(s, '\n')) || *++p) {
 		p = xmalloc(strlen(s) + 2);
 		strcpy(p, s);
 		strcat(p, "\n");
 		setup_string_in_str(&input, p);
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		rcode = parse_stream_outer(&input, flag);
 		free(p);
 		return rcode;
 	} else {
 #endif
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	setup_string_in_str(&input, s);
 	return parse_stream_outer(&input, flag);
 #ifdef __U_BOOT__
@@ -3271,10 +3284,13 @@ int parse_file_outer(void)
 	int rcode;
 	struct in_str input;
 #ifndef __U_BOOT__
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	setup_file_in_str(&input, f);
 #else
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	setup_file_in_str(&input);
 #endif
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	rcode = parse_stream_outer(&input, FLAG_PARSE_SEMICOLON);
 	return rcode;
 }
@@ -3371,6 +3387,7 @@ int hush_main(int argc, char * const *argv)
 	global_argc = argc;
 	global_argv = argv;
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* (re?) initialize globals.  Sometimes hush_main() ends up calling
 	 * hush_main(), therefore we cannot rely on the BSS to zero out this
 	 * stuff.  Reset these to 0 every time. */

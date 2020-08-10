@@ -104,6 +104,6 @@ void main_loop(void)
 	} else {
 		autoboot_command(s);
 	}
-	
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	cli_loop();
 }

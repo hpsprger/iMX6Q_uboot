@@ -26,6 +26,7 @@ DECLARE_GLOBAL_DATA_PTR;
  */
 int run_command(const char *cmd, int flag)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifndef CONFIG_SYS_HUSH_PARSER
 	/*
 	 * cli_run_command can return 0 or 1 for success, so clean up
@@ -53,6 +54,7 @@ int run_command(const char *cmd, int flag)
  */
 int run_command_repeatable(const char *cmd, int flag)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifndef CONFIG_SYS_HUSH_PARSER
 	return cli_simple_run_command(cmd, flag);
 #else
@@ -74,6 +76,7 @@ int run_command_list(const char *cmd, int len, int flag)
 	char *buff = (char *)cmd;	/* cast away const */
 	int rcode = 0;
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (len == -1) {
 		len = strlen(cmd);
 #ifdef CONFIG_SYS_HUSH_PARSER
@@ -201,10 +204,12 @@ err:
 void cli_loop(void)
 {
 #ifdef CONFIG_SYS_HUSH_PARSER
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	parse_file_outer();
 	/* This point is never reached */
 	for (;;);
 #else
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	cli_simple_loop();
 #endif /*CONFIG_SYS_HUSH_PARSER*/
 }
