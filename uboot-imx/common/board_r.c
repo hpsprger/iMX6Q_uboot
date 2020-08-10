@@ -692,6 +692,7 @@ static int initr_check_fastboot(void)
 
 static int run_main_loop(void)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_SANDBOX
 	sandbox_main_loop_init();
 #endif

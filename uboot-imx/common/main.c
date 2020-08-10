@@ -88,7 +88,7 @@ void main_loop(void)
 	run_command("fatload mmc 2:1 0x15000000 logo.bmp",0);
 	run_command("bmp display 0x15000000",0);
 #endif
-
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	s = bootdelay_process();
 	if (cli_process_fdt(&s))
 		cli_secure_boot_cmd(s);
