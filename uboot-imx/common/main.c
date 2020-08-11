@@ -95,6 +95,7 @@ void main_loop(void)
 
 	embedsky_init();
 	if(tqboot_mode == 0){
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		autoboot_command("tq_ini");
 		run_command("run bootcmd",0);
 		/*s_env = getenv("download_root");
@@ -102,6 +103,7 @@ void main_loop(void)
 			run_command("tq_boot sd",0);
 		}*/
 	} else {
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		autoboot_command(s);
 	}
 	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);

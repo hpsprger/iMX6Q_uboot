@@ -203,6 +203,7 @@ err:
 
 void cli_loop(void)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_SYS_HUSH_PARSER
 	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	parse_file_outer();
