@@ -502,7 +502,7 @@ enum command_ret_t cmd_process(int flag, int argc, char * const argv[],
 	enum command_ret_t rc = CMD_RET_SUCCESS;
 	cmd_tbl_t *cmdtp;
 
-	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+	printf("Fn:%s Ln:%d cmd:%s \n",__FUNCTION__,__LINE__, argv[0]);
 	/* Look up command in command table */
 	cmdtp = find_cmd(argv[0]);
 	if (cmdtp == NULL) {
