@@ -630,11 +630,13 @@ static int bootz_start(cmd_tbl_t *cmdtp, int flag, int argc,
 int do_bootz(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
 	int ret;
-
+        int i;
 	/* Consume 'bootz' */
 	argc--; argv++;
 
-	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+        for (i=0; i < argc; i++) {
+	    printf("Fn:%s Ln:%d  argv[%d]=%s \n",__FUNCTION__,__LINE__, i, argv[i]);
+        }
 
 	if (bootz_start(cmdtp, flag, argc, argv, &images))
 		return 1;
