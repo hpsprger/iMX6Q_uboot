@@ -588,7 +588,9 @@ static int bootz_start(cmd_tbl_t *cmdtp, int flag, int argc,
 	ret = do_bootm_states(cmdtp, flag, argc, argv, BOOTM_STATE_START,
 			      images, 1);
 
-	/* Setup Linux kernel zImage entry point */
+	printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        /* Setup Linux kernel zImage entry point */
 	if (!argc) {
 		images->ep = load_addr;
 		debug("*  kernel: default image load address = 0x%08lx\n",
@@ -598,6 +600,8 @@ static int bootz_start(cmd_tbl_t *cmdtp, int flag, int argc,
 		debug("*  kernel: cmdline image address = 0x%08lx\n",
 			images->ep);
 	}
+
+	printf("Fn:%s Ln:%d images->ep=0x%x \n",__FUNCTION__,__LINE__, images->ep);
 
 	ret = bootz_setup(images->ep, &zi_start, &zi_end);
 	if (ret != 0)
@@ -629,6 +633,8 @@ int do_bootz(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 
 	/* Consume 'bootz' */
 	argc--; argv++;
+
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 
 	if (bootz_start(cmdtp, flag, argc, argv, &images))
 		return 1;

@@ -857,7 +857,9 @@ binary_size_check: u-boot.bin FORCE
 	fi
 
 u-boot.bin: u-boot FORCE
+	@echo "top_Makefile==>rule:u-boot.bin======>exe_cmd1="$(cmd_objcopy)
 	$(call if_changed,objcopy)
+	@echo "top_Makefile==>rule:u-boot.bin======>exe_cmd2="$(DO_STATIC_RELA),$<,$@,$(CONFIG_SYS_TEXT_BASE)
 	$(call DO_STATIC_RELA,$<,$@,$(CONFIG_SYS_TEXT_BASE))
 	$(BOARD_SIZE_CHECK)
 
