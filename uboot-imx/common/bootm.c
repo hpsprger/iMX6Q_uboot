@@ -50,6 +50,8 @@ static void boot_start_lmb(bootm_headers_t *images)
 	ulong		mem_start;
 	phys_size_t	mem_size;
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+
 	lmb_init(&images->lmb);
 
 	mem_start = getenv_bootm_low();
@@ -411,6 +413,7 @@ static int bootm_load_os(bootm_headers_t *images, unsigned long *load_end,
 	void *load_buf, *image_buf;
 	int err;
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	load_buf = map_sysmem(load, 0);
 	image_buf = map_sysmem(os.image_start, image_len);
 	err = bootm_decomp_image(os.comp, load, os.image_start, os.type,
@@ -459,6 +462,7 @@ ulong bootm_disable_interrupts(void)
 {
 	ulong iflag;
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/*
 	 * We have reached the point of no return: we are going to
 	 * overwrite all exception vector code, so we cannot easily
@@ -580,6 +584,7 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 
 	images->state |= states;
 
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__, states);
 	/*
 	 * Work through the states and see how far we get. We stop on
 	 * any error.

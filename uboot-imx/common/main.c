@@ -85,6 +85,7 @@ void main_loop(void)
 #endif /* CONFIG_UPDATE_TFTP */
 
 #ifdef	CONFIG_DISPLAY_LOGO
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	run_command("fatload mmc 2:1 0x15000000 logo.bmp",0);
 	run_command("bmp display 0x15000000",0);
 #endif
@@ -103,7 +104,7 @@ void main_loop(void)
 			run_command("tq_boot sd",0);
 		}*/
 	} else {
-	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+	        printf("Fn:%s Ln:%d ==>s:%s \n",__FUNCTION__,__LINE__,s);
 		autoboot_command(s);
 	}
 	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);

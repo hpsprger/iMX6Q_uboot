@@ -489,7 +489,8 @@ void fixup_cmdtable(cmd_tbl_t *cmdtp, int size)
 static int cmd_call(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
 	int result;
-
+	
+	printf("Fn:%s Ln:%d cmdtp->name=%s \n",__FUNCTION__,__LINE__, cmdtp->name);
 	result = (cmdtp->cmd)(cmdtp, flag, argc, argv);
 	if (result)
 		debug("Command failed, result=%d", result);

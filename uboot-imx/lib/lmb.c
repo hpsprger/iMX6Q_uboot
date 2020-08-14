@@ -232,7 +232,7 @@ long lmb_free(struct lmb *lmb, phys_addr_t base, phys_size_t size)
 long lmb_reserve(struct lmb *lmb, phys_addr_t base, phys_size_t size)
 {
 	struct lmb_region *_rgn = &(lmb->reserved);
-
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	return lmb_add_region(_rgn, base, size);
 }
 
