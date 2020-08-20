@@ -634,6 +634,8 @@ int do_bootz(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	/* Consume 'bootz' */
 	argc--; argv++;
 
+	printf("Fn:%s Ln:%d  argc=%d cmdtp->name=%s \n",__FUNCTION__,__LINE__, argc, cmdtp->name);
+        
         for (i=0; i < argc; i++) {
 	    printf("Fn:%s Ln:%d  argv[%d]=%s \n",__FUNCTION__,__LINE__, i, argv[i]);
         }

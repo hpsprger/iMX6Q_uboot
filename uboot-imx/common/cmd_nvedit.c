@@ -136,6 +136,9 @@ static int do_env_print(cmd_tbl_t *cmdtp, int flag, int argc,
 		return 0;
 	}
 
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	/* print selected env vars */
 	env_flag &= ~H_HIDE_DOT;
 	for (i = 1; i < argc; ++i) {
@@ -155,9 +158,14 @@ static int do_env_grep(cmd_tbl_t *cmdtp, int flag,
 {
 	char *res = NULL;
 	int len, grep_how, grep_what;
+        int i;
 
 	if (argc < 2)
 		return CMD_RET_USAGE;
+
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 
 	grep_how  = H_MATCH_SUBSTR;	/* default: substring search	*/
 	grep_what = H_MATCH_BOTH;	/* default: grep names and values */
@@ -348,9 +356,13 @@ ulong getenv_hex(const char *varname, ulong default_val)
 #ifndef CONFIG_SPL_BUILD
 static int do_env_set(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
+        int i;
 	if (argc < 2)
 		return CMD_RET_USAGE;
 
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	return _do_env_set(flag, argc, argv);
 }
 
@@ -377,6 +389,10 @@ int do_env_ask(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	 */
 	if (argc == 1)
 		return CMD_RET_USAGE;
+
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 
 	/*
 	 * We test the last argument if it can be converted
@@ -478,6 +494,9 @@ int do_env_callback(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	int i;
 	int num_callbacks;
 
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	/* Print the available callbacks */
 	puts("Available callbacks:\n");
 	puts("\tCallback Name\n");
@@ -541,6 +560,10 @@ static int print_active_flags(ENTRY *entry)
  */
 int do_env_flags(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
+        int i;
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	/* Print the available variable types */
 	printf("Available variable type flags (position %d):\n",
 		ENV_FLAGS_VARTYPE_LOC);
@@ -586,10 +609,14 @@ static int do_env_edit(cmd_tbl_t *cmdtp, int flag, int argc,
 {
 	char buffer[CONFIG_SYS_CBSIZE];
 	char *init_val;
+        int i;
 
 	if (argc < 2)
 		return CMD_RET_USAGE;
 
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	/* Set read buffer to initial value or empty sting */
 	init_val = getenv(argv[1]);
 	if (init_val)
@@ -696,6 +723,11 @@ ulong getenv_ulong(const char *name, int base, ulong default_val)
 static int do_env_save(cmd_tbl_t *cmdtp, int flag, int argc,
 		       char * const argv[])
 {
+        int i;
+
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	printf("Saving Environment to %s...\n", env_name_spec);
 
 	return saveenv() ? 1 : 0;
@@ -775,6 +807,11 @@ static int do_env_delete(cmd_tbl_t *cmdtp, int flag,
 {
 	int env_flag = H_INTERACTIVE;
 	int ret = 0;
+        int i;
+
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 
 	debug("Initial value for argc=%d\n", argc);
 	while (argc > 1 && **(argv + 1) == '-') {
@@ -863,8 +900,13 @@ static int do_env_export(cmd_tbl_t *cmdtp, int flag,
 	char	sep = '\n';
 	int	chk = 0;
 	int	fmt = 0;
-
+        int i;
 	cmd = *argv;
+
+
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 
 	while (--argc > 0 && **++argv == '-') {
 		char *arg = *argv;
@@ -983,9 +1025,12 @@ static int do_env_import(cmd_tbl_t *cmdtp, int flag,
 	int	del = 0;
 	int	crlf_is_lf = 0;
 	size_t	size;
-
+        int i;
 	cmd = *argv;
 
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	while (--argc > 0 && **++argv == '-') {
 		char *arg = *argv;
 		while (*++arg) {
@@ -1088,11 +1133,15 @@ sep_err:
 static int do_env_exists(cmd_tbl_t *cmdtp, int flag, int argc,
 		       char * const argv[])
 {
+        int i;
 	ENTRY e, *ep;
 
 	if (argc < 2)
 		return CMD_RET_USAGE;
 
+        for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
+        }
 	e.key = argv[1];
 	e.data = NULL;
 	e.callback = NULL;

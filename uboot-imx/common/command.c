@@ -92,6 +92,9 @@ cmd_tbl_t *find_cmd_tbl(const char *cmd, cmd_tbl_t *table, int table_len)
 
 	if (!cmd)
 		return NULL;
+
+        printf("Fn:%s Ln:%d cmd=%s \n",__FUNCTION__,__LINE__, cmd);
+
 	/*
 	 * Some commands allow length modifiers (like "cp.b");
 	 * compare command name only until first dot.
