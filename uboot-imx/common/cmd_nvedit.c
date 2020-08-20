@@ -126,7 +126,9 @@ static int do_env_print(cmd_tbl_t *cmdtp, int flag, int argc,
 		env_flag &= ~H_HIDE_DOT;
 	}
 
-	if (argc == 1) {
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        if (argc == 1) {
 		/* print all env vars */
 		rcode = env_print(NULL, env_flag);
 		if (!rcode)
@@ -160,7 +162,9 @@ static int do_env_grep(cmd_tbl_t *cmdtp, int flag,
 	int len, grep_how, grep_what;
         int i;
 
-	if (argc < 2)
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        if (argc < 2)
 		return CMD_RET_USAGE;
 
         for (i = 0; i < argc; i++) {
@@ -357,7 +361,10 @@ ulong getenv_hex(const char *varname, ulong default_val)
 static int do_env_set(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
         int i;
-	if (argc < 2)
+
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        if (argc < 2)
 		return CMD_RET_USAGE;
 
         for (i = 0; i < argc; i++) {
@@ -382,6 +389,7 @@ int do_env_ask(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	local_args[2] = NULL;
 	local_args[3] = NULL;
 
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
 	/*
 	 * Check the syntax:
 	 *
@@ -611,7 +619,9 @@ static int do_env_edit(cmd_tbl_t *cmdtp, int flag, int argc,
 	char *init_val;
         int i;
 
-	if (argc < 2)
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        if (argc < 2)
 		return CMD_RET_USAGE;
 
         for (i = 0; i < argc; i++) {
@@ -1203,7 +1213,9 @@ static int do_env(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
 	cmd_tbl_t *cp;
 
-	if (argc < 2)
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        if (argc < 2)
 		return CMD_RET_USAGE;
 
 	/* drop initial "env" arg */

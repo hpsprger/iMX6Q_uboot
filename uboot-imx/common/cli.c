@@ -119,7 +119,9 @@ int do_run(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
 	int i;
 
-	if (argc < 2)
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        if (argc < 2)
 		return CMD_RET_USAGE;
 
 	for (i = 1; i < argc; ++i) {
