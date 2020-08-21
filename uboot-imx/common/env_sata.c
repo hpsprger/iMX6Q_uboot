@@ -134,6 +134,7 @@ inline int read_env(block_dev_desc_t *sata, unsigned long size,
 
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if !defined(ENV_IS_EMBEDDED)
 	block_dev_desc_t *sata = NULL;
 	char buf[CONFIG_ENV_SIZE];

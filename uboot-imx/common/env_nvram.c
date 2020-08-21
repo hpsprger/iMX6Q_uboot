@@ -58,6 +58,7 @@ void env_relocate_spec(void)
 {
 	char buf[CONFIG_ENV_SIZE];
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if defined(CONFIG_SYS_NVRAM_ACCESS_ROUTINE)
 	nvram_read(buf, CONFIG_ENV_ADDR, CONFIG_ENV_SIZE);
 #else

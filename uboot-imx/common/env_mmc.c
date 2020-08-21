@@ -196,6 +196,7 @@ static inline int read_env(struct mmc *mmc, unsigned long size,
 	uint blk_start, blk_cnt, n;
 	int dev = mmc_get_env_devno();
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_SPL_BUILD
 	dev = 0;
 #endif
@@ -211,6 +212,7 @@ static inline int read_env(struct mmc *mmc, unsigned long size,
 #ifdef CONFIG_ENV_OFFSET_REDUND
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if !defined(ENV_IS_EMBEDDED)
 	struct mmc *mmc;
 	u32 offset1, offset2;
@@ -297,6 +299,7 @@ err:
 #else /* ! CONFIG_ENV_OFFSET_REDUND */
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if !defined(ENV_IS_EMBEDDED)
 	ALLOC_CACHE_ALIGN_BUFFER(char, buf, CONFIG_ENV_SIZE);
 	struct mmc *mmc;
@@ -324,7 +327,8 @@ void env_relocate_spec(void)
 		ret = 1;
 		goto fini;
 	}
-
+  
+        printf("Fn:%s Ln:%d buf:%s \n",__FUNCTION__,__LINE__, buf);
 	env_import(buf, 1);
 	ret = 0;
 

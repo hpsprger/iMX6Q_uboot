@@ -52,6 +52,7 @@ int saveenv(void)
 
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifndef ENV_IS_EMBEDDED
 	env_import((char *)env_ptr, 1);
 #endif

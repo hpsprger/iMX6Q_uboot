@@ -33,6 +33,7 @@ void env_relocate_spec(void)
 	unsigned off;
 	char buf[CONFIG_ENV_SIZE];
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Read old CRC */
 	read_dataflash(CONFIG_ENV_ADDR + offsetof(env_t, crc),
 		       sizeof(ulong), (char *)&crc);

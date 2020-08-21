@@ -30,6 +30,7 @@ DECLARE_GLOBAL_DATA_PTR;
 
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	struct mtd_info *mtd = &onenand_mtd;
 #ifdef CONFIG_ENV_ADDR_FLEX
 	struct onenand_chip *this = &onenand_chip;

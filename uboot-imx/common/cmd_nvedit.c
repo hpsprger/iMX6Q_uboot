@@ -1038,6 +1038,8 @@ static int do_env_import(cmd_tbl_t *cmdtp, int flag,
         int i;
 	cmd = *argv;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+
         for (i = 0; i < argc; i++) {
             printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
         }

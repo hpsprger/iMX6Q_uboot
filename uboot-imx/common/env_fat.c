@@ -81,6 +81,7 @@ void env_relocate_spec(void)
 	int dev, part;
 	int err;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	part = get_device_and_partition(FAT_ENV_INTERFACE,
 					FAT_ENV_DEVICE_AND_PART,
 					&dev_desc, &info, 1);

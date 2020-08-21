@@ -51,6 +51,7 @@ int mmc_send_cmd(struct mmc *mmc, struct mmc_cmd *cmd, struct mmc_data *data)
 {
 	int ret;
 
+        printf("Fn:%s Ln:%d CMD_SEND=%d \n",__FUNCTION__,__LINE__, cmd->cmdidx);
 #ifdef CONFIG_MMC_TRACE
 	int i;
 	u8 *ptr;
@@ -194,6 +195,7 @@ static int mmc_read_blocks(struct mmc *mmc, void *dst, lbaint_t start,
 	struct mmc_cmd cmd;
 	struct mmc_data data;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (blkcnt > 1)
 		cmd.cmdidx = MMC_CMD_READ_MULTIPLE_BLOCK;
 	else
@@ -233,6 +235,7 @@ static ulong mmc_bread(int dev_num, lbaint_t start, lbaint_t blkcnt, void *dst)
 {
 	lbaint_t cur, blocks_todo = blkcnt;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (blkcnt == 0)
 		return 0;
 
@@ -1532,6 +1535,7 @@ struct mmc *mmc_create(const struct mmc_config *cfg, void *priv)
 			cfg->f_min == 0 || cfg->f_max == 0 || cfg->b_max == 0)
 		return NULL;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	mmc = calloc(1, sizeof(*mmc));
 	if (mmc == NULL)
 		return NULL;

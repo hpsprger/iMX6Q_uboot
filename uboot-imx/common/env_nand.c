@@ -302,6 +302,7 @@ int get_nand_env_oob(nand_info_t *nand, unsigned long *result)
 #ifdef CONFIG_ENV_OFFSET_REDUND
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if !defined(ENV_IS_EMBEDDED)
 	int read1_fail = 0, read2_fail = 0;
 	int crc1_ok = 0, crc2_ok = 0;
@@ -374,6 +375,7 @@ done:
  */
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if !defined(ENV_IS_EMBEDDED)
 	int ret;
 	ALLOC_CACHE_ALIGN_BUFFER(char, buf, CONFIG_ENV_SIZE);

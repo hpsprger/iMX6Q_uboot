@@ -99,6 +99,8 @@ void set_default_env(const char *s)
 {
 	int flags = 0;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+
 	if (sizeof(default_environment) > ENV_SIZE) {
 		puts("*** Error - default environment is too large\n\n");
 		return;
@@ -133,6 +135,7 @@ int set_default_vars(int nvars, char * const vars[])
 	 * Special use-case: import from default environment
 	 * (and use \0 as a separator)
 	 */
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	return himport_r(&env_htab, (const char *)default_environment,
 				sizeof(default_environment), '\0',
 				H_NOCLEAR | H_INTERACTIVE, 0, nvars, vars);
@@ -193,6 +196,7 @@ int env_import(const char *buf, int check)
 	env_t *ep = (env_t *)buf;
 	int ret;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (check) {
 		uint32_t crc;
 
@@ -251,6 +255,7 @@ int env_export(env_t *env_out)
 
 void env_relocate(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if defined(CONFIG_NEEDS_MANUAL_RELOC)
 	env_reloc();
 	env_htab.change_ok += gd->reloc_off;

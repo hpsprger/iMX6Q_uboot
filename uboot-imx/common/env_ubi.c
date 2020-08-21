@@ -109,6 +109,7 @@ int saveenv(void)
 #ifdef CONFIG_SYS_REDUNDAND_ENVIRONMENT
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	ALLOC_CACHE_ALIGN_BUFFER(char, env1_buf, CONFIG_ENV_SIZE);
 	ALLOC_CACHE_ALIGN_BUFFER(char, env2_buf, CONFIG_ENV_SIZE);
 	int crc1_ok = 0, crc2_ok = 0;
@@ -171,6 +172,7 @@ void env_relocate_spec(void)
 #else /* ! CONFIG_SYS_REDUNDAND_ENVIRONMENT */
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	ALLOC_CACHE_ALIGN_BUFFER(char, buf, CONFIG_ENV_SIZE);
 
 	if (ubi_part(CONFIG_ENV_UBI_PART, NULL)) {

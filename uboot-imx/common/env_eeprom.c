@@ -70,6 +70,7 @@ uchar env_get_char_spec(int index)
 	uchar c;
 	unsigned int off = CONFIG_ENV_OFFSET;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_ENV_OFFSET_REDUND
 	if (gd->env_valid == 2)
 		off = CONFIG_ENV_OFFSET_REDUND;

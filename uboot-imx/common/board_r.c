@@ -439,6 +439,7 @@ static int should_load_env(void)
 
 static int initr_env(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* initialize environment */
 	if (should_load_env())
 		env_relocate();

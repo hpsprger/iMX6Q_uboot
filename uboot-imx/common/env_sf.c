@@ -145,6 +145,7 @@ void env_relocate_spec(void)
 	tmp_env1 = (env_t *)malloc(CONFIG_ENV_SIZE);
 	tmp_env2 = (env_t *)malloc(CONFIG_ENV_SIZE);
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (!tmp_env1 || !tmp_env2) {
 		set_default_env("!malloc() failed");
 		goto out;
@@ -295,6 +296,7 @@ void env_relocate_spec(void)
 	int ret;
 	char *buf = NULL;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	buf = (char *)malloc(CONFIG_ENV_SIZE);
 	env_flash = spi_flash_probe(CONFIG_ENV_SPI_BUS, CONFIG_ENV_SPI_CS,
 			CONFIG_ENV_SPI_MAX_HZ, CONFIG_ENV_SPI_MODE);

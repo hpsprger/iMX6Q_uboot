@@ -293,6 +293,7 @@ done:
 
 void env_relocate_spec(void)
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_ENV_ADDR_REDUND
 	if (gd->env_addr != (ulong)&(flash_addr->data)) {
 		env_t *etmp = flash_addr;
