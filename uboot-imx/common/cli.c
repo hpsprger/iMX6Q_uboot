@@ -26,7 +26,7 @@ DECLARE_GLOBAL_DATA_PTR;
  */
 int run_command(const char *cmd, int flag)
 {
-	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+	printf("Fn:%s Ln:%d cmd=%s \n",__FUNCTION__,__LINE__, cmd);
 #ifndef CONFIG_SYS_HUSH_PARSER
 	/*
 	 * cli_run_command can return 0 or 1 for success, so clean up
