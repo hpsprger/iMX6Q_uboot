@@ -23,6 +23,7 @@ int mmc_get_env_addr(struct mmc *mmc, int copy, u32 *env_addr)
 	u8 *tmp_buf;
 	u32 blklen, code_offset, code_len, n;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	blklen = mmc->read_bl_len;
 	tmp_buf = malloc(blklen);
 	if (!tmp_buf)
