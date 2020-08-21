@@ -128,7 +128,7 @@ int do_run(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 		char *arg;
 
 		arg = getenv(argv[i]);
-                printf("Fn:%s Ln:%d i=%d argv[%d] ==> arg:%s \n",__FUNCTION__,__LINE__, i, i, argv[i], arg);
+                printf("Fn:%s Ln:%d i=%d argv[%d]:%s ==> arg:%s \n",__FUNCTION__,__LINE__, i, i, argv[i], arg);
 		if (arg == NULL) {
 			printf("## Error: \"%s\" not defined\n", argv[i]);
 			return 1;
