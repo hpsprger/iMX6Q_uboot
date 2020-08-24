@@ -780,7 +780,9 @@ static int do_env_default(cmd_tbl_t *cmdtp, int __flag,
 {
 	int all = 0, flag = 0;
 
-	debug("Initial value for argc=%d\n", argc);
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+	
+        debug("Initial value for argc=%d\n", argc);
 	while (--argc > 0 && **++argv == '-') {
 		char *arg = *argv;
 
@@ -819,6 +821,8 @@ static int do_env_delete(cmd_tbl_t *cmdtp, int flag,
 	int ret = 0;
         int i;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+        
         for (i = 0; i < argc; i++) {
             printf("Fn:%s Ln:%d i=%d argv[%d]=%s\n",__FUNCTION__,__LINE__, i, i, argv[i]);
         }

@@ -782,7 +782,9 @@ int himport_r(struct hsearch_data *htab,
 	char *localvars[nvars];
 	int i;
 
-	/* Test for correct arguments.  */
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+	
+        /* Test for correct arguments.  */
 	if (htab == NULL) {
 		__set_errno(EINVAL);
 		return 0;

@@ -295,10 +295,11 @@ int fs_read(const char *filename, ulong addr, loff_t offset, loff_t len,
 	 * We don't actually know how many bytes are being read, since len==0
 	 * means read the whole file.
 	 */
+        printf("Fn:%s Ln:%d  filename=%s addr=%p \n",__FUNCTION__,__LINE__, filename, addr);
 	buf = map_sysmem(addr, len);
 	ret = info->read(filename, buf, offset, len, actread);
 	unmap_sysmem(buf);
-
+        printf("Fn:%s Ln:%d  filename=%s addr=%p done ...\n",__FUNCTION__,__LINE__, filename, addr);
 	/* If we requested a specific number of bytes, check we got it */
 	if (ret == 0 && len && *actread != len) {
 		printf("** Unable to read file %s **\n", filename);
@@ -361,6 +362,7 @@ int do_load(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	unsigned long time;
 	char *ep;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (argc < 2)
 		return CMD_RET_USAGE;
 	if (argc > 7)
@@ -399,11 +401,12 @@ int do_load(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 		pos = 0;
 
 	time = get_timer(0);
+        printf("Fn:%s Ln:%d  filename=%s addr=%p \n",__FUNCTION__,__LINE__, filename, addr);
 	ret = fs_read(filename, addr, pos, bytes, &len_read);
 	time = get_timer(time);
 	if (ret < 0)
 		return 1;
-
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	printf("%llu bytes read in %lu ms", len_read, time);
 	if (time > 0) {
 		puts(" (");

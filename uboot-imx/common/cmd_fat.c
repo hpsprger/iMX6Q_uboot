@@ -33,6 +33,7 @@ U_BOOT_CMD(
 
 int do_fat_fsload (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 {
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	return do_load(cmdtp, flag, argc, argv, FS_TYPE_FAT);
 }
 

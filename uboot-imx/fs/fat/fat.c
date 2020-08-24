@@ -48,6 +48,7 @@ static int disk_read(__u32 block, __u32 nr_blocks, void *buf)
 	if (!cur_dev || !cur_dev->block_read)
 		return -1;
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	return cur_dev->block_read(cur_dev->dev,
 			cur_part_info.start + block, nr_blocks, buf);
 }
@@ -747,6 +748,8 @@ read_bootsectandvi(boot_sector *bs, volume_info *volinfo, int *fatsize)
 		return -1;
 	}
 
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+
 	block = memalign(ARCH_DMA_MINALIGN, cur_dev->blksz);
 	if (block == NULL) {
 		debug("Error: allocating block\n");
@@ -829,11 +832,12 @@ int do_fat_read_at(const char *filename, loff_t pos, void *buffer,
 	int do_read;
 	__u8 *dir_ptr;
 
+        printf("Fn:%s Ln:%d  filename=%s pos=%p \n",__FUNCTION__,__LINE__, filename, pos);
 	if (read_bootsectandvi(&bs, &volinfo, &mydata->fatsize)) {
 		debug("Error: reading boot sector\n");
 		return -1;
 	}
-
+        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (mydata->fatsize == 32) {
 		root_cluster = bs.root_cluster;
 		mydata->fatlength = bs.fat32_length;
@@ -954,6 +958,7 @@ int do_fat_read_at(const char *filename, loff_t pos, void *buffer,
 			debug("FAT read(sect=%d, cnt:%d), clust_size=%d, DIRENTSPERBLOCK=%zd\n",
 				cursect, read_blk, mydata->clust_size, DIRENTSPERBLOCK);
 
+                        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 			if (disk_read(cursect, read_blk, dir_ptr) < 0) {
 				debug("Error: reading rootdir block\n");
 				goto exit;
@@ -1290,6 +1295,7 @@ int file_fat_read_at(const char *filename, loff_t pos, void *buffer,
 		     loff_t maxsize, loff_t *actread)
 {
 	printf("reading %s\n", filename);
+        printf("Fn:%s Ln:%d  filename=%s pos=%p \n",__FUNCTION__,__LINE__, filename, pos);
 	return do_fat_read_at(filename, pos, buffer, maxsize, LS_NO, 0,
 			      actread);
 }
@@ -1299,6 +1305,7 @@ int file_fat_read(const char *filename, void *buffer, int maxsize)
 	loff_t actread;
 	int ret;
 
+        printf("Fn:%s Ln:%d  filename=%s \n",__FUNCTION__,__LINE__, filename);
 	ret =  file_fat_read_at(filename, 0, buffer, maxsize, &actread);
 	if (ret)
 		return ret;
@@ -1310,7 +1317,7 @@ int fat_read_file(const char *filename, void *buf, loff_t offset, loff_t len,
 		  loff_t *actread)
 {
 	int ret;
-
+        printf("Fn:%s Ln:%d  filename=%s addr=%p \n",__FUNCTION__,__LINE__, filename, offset);
 	ret = file_fat_read_at(filename, offset, buf, len, actread);
 	if (ret)
 		printf("** Unable to read file %s **\n", filename);
