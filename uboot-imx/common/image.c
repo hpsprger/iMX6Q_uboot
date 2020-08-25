@@ -1082,6 +1082,7 @@ int boot_ramdisk_high(struct lmb *lmb, ulong rd_data, ulong rd_len,
 	ulong	initrd_high;
 	int	initrd_copy_to_ram = 1;
 
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 	if ((s = getenv("initrd_high")) != NULL) {
 		/* a value of "no" or a similar string will act like 0,
 		 * turning the "load high" feature off. This is intentional.

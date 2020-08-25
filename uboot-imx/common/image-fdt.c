@@ -79,6 +79,7 @@ void boot_fdt_add_mem_rsv_regions(struct lmb *lmb, void *fdt_blob)
 	uint64_t addr, size;
 	int i, total;
 
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 	if (fdt_check_header(fdt_blob) != 0)
 		return;
 
@@ -118,6 +119,7 @@ int boot_relocate_fdt(struct lmb *lmb, char **of_flat_tree, ulong *of_size)
 	int	err;
 	int	disable_relocation = 0;
 
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 	/* nothing to do */
 	if (*of_size == 0)
 		return 0;

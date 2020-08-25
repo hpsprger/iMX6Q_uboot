@@ -73,6 +73,7 @@ static int bootm_start(cmd_tbl_t *cmdtp, int flag, int argc,
 	memset((void *)&images, 0, sizeof(images));
 	images.verify = getenv_yesno("verify");
 
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 	boot_start_lmb(&images);
 
 	bootstage_mark_name(BOOTSTAGE_ID_BOOTM_START, "bootm_start");
@@ -88,6 +89,7 @@ static int bootm_find_os(cmd_tbl_t *cmdtp, int flag, int argc,
 	bool ep_found = false;
 	int ret;
 
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 	/* get kernel image header, start address and length */
 	os_hdr = boot_get_kernel(cmdtp, flag, argc, argv,
 			&images, &images.os.image_start, &images.os.image_len);
@@ -211,7 +213,9 @@ static int bootm_find_ramdisk(int flag, int argc, char * const argv[])
 {
 	int ret;
 
-	/* find ramdisk */
+	printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	
+        /* find ramdisk */
 	ret = boot_get_ramdisk(argc, argv, &images, IH_INITRD_ARCH,
 			       &images.rd_start, &images.rd_end);
 	if (ret) {
@@ -227,6 +231,7 @@ static int bootm_find_fdt(int flag, int argc, char * const argv[])
 {
 	int ret;
 
+	printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
 	/* find flattened device tree */
 	ret = boot_get_fdt(flag, argc, argv, IH_ARCH_DEFAULT, &images,
 			   &images.ft_addr, &images.ft_len);
@@ -243,6 +248,13 @@ static int bootm_find_fdt(int flag, int argc, char * const argv[])
 
 int bootm_find_ramdisk_fdt(int flag, int argc, char * const argv[])
 {
+        int i;
+
+	printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+        for (i = 0; i < argc; i++) {
+	    printf("Fn:%s Ln:%d argv[%d]=%s \n",__FUNCTION__,__LINE__, i, argv[i]);
+        }
+
 	if (bootm_find_ramdisk(flag, argc, argv))
 		return 1;
 
@@ -257,6 +269,7 @@ int bootm_find_ramdisk_fdt(int flag, int argc, char * const argv[])
 static int bootm_find_other(cmd_tbl_t *cmdtp, int flag, int argc,
 			    char * const argv[])
 {
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 	if (((images.os.type == IH_TYPE_KERNEL) ||
 	     (images.os.type == IH_TYPE_KERNEL_NOLOAD) ||
 	     (images.os.type == IH_TYPE_MULTI)) &&
@@ -581,10 +594,13 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	boot_os_fn *boot_fn;
 	ulong iflag = 0;
 	int ret = 0, need_boot_fn;
-
+        int i;
 	images->state |= states;
 
 	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__, states);
+        for (i=0; i<argc; i++) {
+	    printf("Fn:%s Ln:%d  argv[%d]=%s \n",__FUNCTION__,__LINE__, i, argv[i]);
+        }
 	/*
 	 * Work through the states and see how far we get. We stop on
 	 * any error.
@@ -604,6 +620,7 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	if (!ret && (states & BOOTM_STATE_LOADOS)) {
 		ulong load_end;
 
+	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 		iflag = bootm_disable_interrupts();
 		ret = bootm_load_os(images, &load_end, 0);
 		if (ret == 0)
@@ -624,6 +641,7 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	if (!ret && (states & BOOTM_STATE_RAMDISK)) {
 		ulong rd_len = images->rd_end - images->rd_start;
 
+	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 		ret = boot_ramdisk_high(&images->lmb, images->rd_start,
 			rd_len, &images->initrd_start, &images->initrd_end);
 		if (!ret) {
@@ -657,12 +675,18 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	}
 
 	/* Call various other states that are not generally used */
-	if (!ret && (states & BOOTM_STATE_OS_CMDLINE))
+	if (!ret && (states & BOOTM_STATE_OS_CMDLINE)) {
+	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 		ret = boot_fn(BOOTM_STATE_OS_CMDLINE, argc, argv, images);
-	if (!ret && (states & BOOTM_STATE_OS_BD_T))
+        }
+	if (!ret && (states & BOOTM_STATE_OS_BD_T)) {
+	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 		ret = boot_fn(BOOTM_STATE_OS_BD_T, argc, argv, images);
-	if (!ret && (states & BOOTM_STATE_OS_PREP))
+        }
+	if (!ret && (states & BOOTM_STATE_OS_PREP)) {
+	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 		ret = boot_fn(BOOTM_STATE_OS_PREP, argc, argv, images);
+        }
 
 #ifdef CONFIG_TRACE
 	/* Pretend to run the OS, then run a user command */

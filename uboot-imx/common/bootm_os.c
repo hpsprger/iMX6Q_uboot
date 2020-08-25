@@ -490,6 +490,7 @@ int boot_selected_os(int argc, char * const argv[], int state,
 
 boot_os_fn *bootm_os_get_boot_func(int os)
 {
+	printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_NEEDS_MANUAL_RELOC
 	static bool relocated;
 
