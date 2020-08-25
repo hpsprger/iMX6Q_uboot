@@ -361,9 +361,14 @@ int do_load(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	int ret;
 	unsigned long time;
 	char *ep;
+        int i;
 
-        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
-	if (argc < 2)
+        printf("Fn:%s Ln:%d argc=%d \n",__FUNCTION__,__LINE__, argc);
+	for (i = 0; i < argc; i++) {
+            printf("Fn:%s Ln:%d argv[%d] = %s \n",__FUNCTION__,__LINE__, i, argv[i]);
+        }
+
+        if (argc < 2)
 		return CMD_RET_USAGE;
 	if (argc > 7)
 		return CMD_RET_USAGE;
