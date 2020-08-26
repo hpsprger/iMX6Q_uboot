@@ -305,11 +305,14 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 	bootstage_mark(BOOTSTAGE_ID_RUN_OS);
 	announce_and_cleanup(fake);
 
-	if (IMAGE_ENABLE_OF_LIBFDT && images->ft_len)
+	if (IMAGE_ENABLE_OF_LIBFDT && images->ft_len) {
 		r2 = (unsigned long)images->ft_addr;
-	else
+	        printf("Fn:%s Ln:%d  r2=0x%x \n",__FUNCTION__,__LINE__, r2);
+        }
+	else {
 		r2 = gd->bd->bi_boot_params;
-
+	        printf("Fn:%s Ln:%d  r2=0x%x \n",__FUNCTION__,__LINE__, r2);
+        }
 	if (!fake) {
 #if defined(CONFIG_ARMV7_NONSEC) || defined(CONFIG_ARMV7_VIRT)
 		if (armv7_boot_nonsec()) {
@@ -318,6 +321,8 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 							  0, machid, r2);
 		} else
 #endif
+                    
+	                printf("Fn:%s Ln:%d kernel_entry=0x%x machid=0x%x r2=0x%x \n",__FUNCTION__,__LINE__, kernel_entry, machid, r2);
 			kernel_entry(0, machid, r2);
 	}
 #endif
