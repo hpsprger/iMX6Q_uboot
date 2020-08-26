@@ -716,11 +716,13 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 		return ret;
 	}
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Now run the OS! We hope this doesn't return */
 	if (!ret && (states & BOOTM_STATE_OS_GO))
 		ret = boot_selected_os(argc, argv, BOOTM_STATE_OS_GO,
 				images, boot_fn);
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Deal with any fallout */
 err:
 	if (iflag)

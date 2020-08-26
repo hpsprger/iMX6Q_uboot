@@ -474,9 +474,11 @@ __weak void arch_preboot_os(void)
 int boot_selected_os(int argc, char * const argv[], int state,
 		     bootm_headers_t *images, boot_os_fn *boot_fn)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	arch_preboot_os();
 	boot_fn(state, argc, argv, images);
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Stand-alone may return when 'autostart' is 'no' */
 	if (images->os.type == IH_TYPE_STANDALONE ||
 	    state == BOOTM_STATE_OS_FAKE_GO) /* We expect to return */
