@@ -206,6 +206,7 @@ static void boot_prep_linux(bootm_headers_t *images)
 {
 	char *commandline = getenv("bootargs");
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (IMAGE_ENABLE_OF_LIBFDT && images->ft_len) {
 #ifdef CONFIG_OF_LIBFDT
 		debug("using: FDT\n");
@@ -262,6 +263,7 @@ bool armv7_boot_nonsec(void)
 /* Subcommand: GO */
 static void boot_jump_linux(bootm_headers_t *images, int flag)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_ARM64
 	void (*kernel_entry)(void *fdt_addr, void *res0, void *res1,
 			void *res2);
@@ -330,6 +332,7 @@ static void boot_jump_linux(bootm_headers_t *images, int flag)
 int do_bootm_linux(int flag, int argc, char * const argv[],
 		   bootm_headers_t *images)
 {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* No need for those on ARM */
 	if (flag & BOOTM_STATE_OS_BD_T || flag & BOOTM_STATE_OS_CMDLINE)
 		return -1;
@@ -344,9 +347,11 @@ int do_bootm_linux(int flag, int argc, char * const argv[],
 		return 0;
 	}
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	boot_prep_linux(images);
 	boot_jump_linux(images, flag);
-	return 0;
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+        return 0;
 }
 
 #ifdef CONFIG_CMD_BOOTZ

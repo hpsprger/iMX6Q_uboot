@@ -611,16 +611,20 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 	if (!ret && (states & BOOTM_STATE_FINDOS))
 		ret = bootm_find_os(cmdtp, flag, argc, argv);
 
-	if (!ret && (states & BOOTM_STATE_FINDOTHER)) {
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
+	
+        if (!ret && (states & BOOTM_STATE_FINDOTHER)) {
 		ret = bootm_find_other(cmdtp, flag, argc, argv);
 		argc = 0;	/* consume the args */
 	}
+
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 
 	/* Load the OS */
 	if (!ret && (states & BOOTM_STATE_LOADOS)) {
 		ulong load_end;
 
-	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		iflag = bootm_disable_interrupts();
 		ret = bootm_load_os(images, &load_end, 0);
 		if (ret == 0)
@@ -636,12 +640,13 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 #endif
 	}
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Relocate the ramdisk */
 #ifdef CONFIG_SYS_BOOT_RAMDISK_HIGH
 	if (!ret && (states & BOOTM_STATE_RAMDISK)) {
 		ulong rd_len = images->rd_end - images->rd_start;
 
-	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		ret = boot_ramdisk_high(&images->lmb, images->rd_start,
 			rd_len, &images->initrd_start, &images->initrd_end);
 		if (!ret) {
@@ -650,6 +655,7 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 		}
 	}
 #endif
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #if defined(CONFIG_OF_LIBFDT) && defined(CONFIG_LMB)
 	if (!ret && (states & BOOTM_STATE_FDT)) {
 		boot_fdt_add_mem_rsv_regions(&images->lmb, images->ft_addr);
@@ -657,14 +663,16 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 					&images->ft_len);
 	}
 #endif
-
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* From now on, we need the OS boot function */
 	if (ret)
 		return ret;
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	boot_fn = bootm_os_get_boot_func(images->os.os);
 	need_boot_fn = states & (BOOTM_STATE_OS_CMDLINE |
 			BOOTM_STATE_OS_BD_T | BOOTM_STATE_OS_PREP |
 			BOOTM_STATE_OS_FAKE_GO | BOOTM_STATE_OS_GO);
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	if (boot_fn == NULL && need_boot_fn) {
 		if (iflag)
 			enable_interrupts();
@@ -674,20 +682,22 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 		return 1;
 	}
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Call various other states that are not generally used */
 	if (!ret && (states & BOOTM_STATE_OS_CMDLINE)) {
-	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		ret = boot_fn(BOOTM_STATE_OS_CMDLINE, argc, argv, images);
         }
 	if (!ret && (states & BOOTM_STATE_OS_BD_T)) {
-	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		ret = boot_fn(BOOTM_STATE_OS_BD_T, argc, argv, images);
         }
 	if (!ret && (states & BOOTM_STATE_OS_PREP)) {
-	        printf("Fn:%s Ln:%d states=0x%x\n",__FUNCTION__,__LINE__);
+	        printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 		ret = boot_fn(BOOTM_STATE_OS_PREP, argc, argv, images);
         }
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 #ifdef CONFIG_TRACE
 	/* Pretend to run the OS, then run a user command */
 	if (!ret && (states & BOOTM_STATE_OS_FAKE_GO)) {
@@ -699,7 +709,7 @@ int do_bootm_states(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[],
 			ret = run_command_list(cmd_list, -1, flag);
 	}
 #endif
-
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	/* Check for unsupported subcommand. */
 	if (ret) {
 		puts("subcommand not supported\n");
@@ -721,6 +731,7 @@ err:
 	else if (ret == BOOTM_ERR_RESET)
 		do_reset(cmdtp, flag, argc, argv);
 
+	printf("Fn:%s Ln:%d \n",__FUNCTION__,__LINE__);
 	return ret;
 }
 
